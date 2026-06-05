@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Music Genre Classification Mini Project</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}" />
+</head>
+
+<body>
+  <main class="page-shell">
+    <section class="hero-panel">
+      <div class="hero-copy">
+
+        <h1>Music Genre Classification Mini Project</h1>
+        <p class="subtitle">
+          Upload an MP3 file to get the Output
+        </p>
+      </div>
+
+      <div class="upload-card">
+        <form id="predictForm" class="upload-form">
+          <label class="file-dropzone" for="audioFile">
+            <span class="dropzone-title">Choose an audio file</span>
+            <span class="dropzone-hint" id="fileLabel">AU, MP3 or WAV, up to 25 MB</span>
+            <input id="audioFile" name="file" type="file" accept=".au,.mp3,.wav,audio/mpeg,audio/wav,audio/x-au" />
+          </label>
+
+          <button type="submit" class="predict-button">Predict Genre</button>
+        </form>
+
+        <div id="loadingMessage" class="status-message loading hidden">Analyzing audio... please wait.</div>
+        <div id="errorMessage" class="status-message error hidden"></div>
+        <div id="resultBox" class="result-box hidden">
+          <span class="result-label">Predicted Genre</span>
+          <h2 id="resultText">-</h2>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+</body>
+
+</html>

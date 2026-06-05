@@ -1,0 +1,228 @@
+:root {
+  --bg-start: #09121f;
+  --bg-end: #132740;
+  --panel: rgba(12, 20, 34, 0.82);
+  --panel-border: rgba(255, 255, 255, 0.12);
+  --text: #f4f7fb;
+  --muted: #b8c4d8;
+  --accent: #78d2ff;
+  --accent-strong: #4ea4ff;
+  --success: #7ddc9a;
+  --error: #ff8a8a;
+  --shadow: 0 24px 80px rgba(0, 0, 0, 0.35);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  font-family: "Segoe UI Variable", "Segoe UI", "Helvetica Neue", sans-serif;
+  color: var(--text);
+  background:
+    radial-gradient(circle at top left, rgba(120, 210, 255, 0.24), transparent 32%),
+    radial-gradient(circle at bottom right, rgba(78, 164, 255, 0.18), transparent 28%),
+    linear-gradient(135deg, var(--bg-start), var(--bg-end));
+}
+
+.page-shell {
+  min-height: 100vh;
+  display: grid;
+  place-items: center;
+  padding: 32px 18px;
+}
+
+.hero-panel {
+  width: min(100%, 980px);
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  gap: 28px;
+  align-items: stretch;
+}
+
+.hero-copy,
+.upload-card {
+  border: 1px solid var(--panel-border);
+  background: var(--panel);
+  backdrop-filter: blur(20px);
+  box-shadow: var(--shadow);
+  border-radius: 28px;
+}
+
+.hero-copy {
+  padding: 42px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.eyebrow {
+  margin: 0 0 16px;
+  color: var(--accent);
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+  font-size: 0.78rem;
+  font-weight: 700;
+}
+
+h1 {
+  margin: 0;
+  font-size: clamp(2.2rem, 5vw, 4.2rem);
+  line-height: 1.02;
+}
+
+.subtitle {
+  margin: 18px 0 0;
+  max-width: 52ch;
+  font-size: 1.02rem;
+  line-height: 1.7;
+  color: var(--muted);
+}
+
+.upload-card {
+  padding: 28px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.upload-form {
+  display: grid;
+  gap: 18px;
+}
+
+.file-dropzone {
+  position: relative;
+  display: grid;
+  gap: 8px;
+  padding: 28px 22px;
+  border-radius: 22px;
+  border: 1.5px dashed rgba(120, 210, 255, 0.45);
+  background: rgba(255, 255, 255, 0.03);
+  cursor: pointer;
+  transition: transform 0.2s ease, border-color 0.2s ease, background 0.2s ease;
+}
+
+.file-dropzone:hover {
+  transform: translateY(-1px);
+  border-color: rgba(120, 210, 255, 0.75);
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.file-dropzone input {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  cursor: pointer;
+}
+
+.dropzone-title {
+  font-size: 1.05rem;
+  font-weight: 700;
+}
+
+.dropzone-hint {
+  color: var(--muted);
+  font-size: 0.95rem;
+}
+
+.predict-button {
+  border: 0;
+  border-radius: 16px;
+  padding: 15px 18px;
+  color: #08111d;
+  font-size: 1rem;
+  font-weight: 800;
+  letter-spacing: 0.02em;
+  background: linear-gradient(135deg, var(--accent), #9ce6ff);
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, filter 0.2s ease;
+  box-shadow: 0 14px 30px rgba(120, 210, 255, 0.18);
+}
+
+.predict-button:hover {
+  transform: translateY(-1px);
+  filter: brightness(1.03);
+}
+
+.predict-button:disabled {
+  cursor: wait;
+  opacity: 0.75;
+  transform: none;
+}
+
+.status-message,
+.result-box {
+  margin-top: 16px;
+  border-radius: 18px;
+  padding: 16px 18px;
+}
+
+.status-message {
+  font-size: 0.95rem;
+  line-height: 1.5;
+}
+
+.status-message.loading {
+  color: var(--accent);
+  background: rgba(120, 210, 255, 0.08);
+  border: 1px solid rgba(120, 210, 255, 0.2);
+}
+
+.status-message.error {
+  color: var(--error);
+  background: rgba(255, 138, 138, 0.08);
+  border: 1px solid rgba(255, 138, 138, 0.18);
+}
+
+.result-box {
+  background: rgba(125, 220, 154, 0.08);
+  border: 1px solid rgba(125, 220, 154, 0.2);
+}
+
+.result-label {
+  display: inline-block;
+  margin-bottom: 10px;
+  color: var(--success);
+  font-size: 0.8rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.result-box h2 {
+  margin: 0;
+  font-size: clamp(1.5rem, 3vw, 2.3rem);
+}
+
+.hidden {
+  display: none;
+}
+
+@media (max-width: 860px) {
+  .hero-panel {
+    grid-template-columns: 1fr;
+  }
+
+  .hero-copy,
+  .upload-card {
+    padding: 24px;
+    border-radius: 24px;
+  }
+}
+
+@media (max-width: 540px) {
+  .page-shell {
+    padding: 16px;
+  }
+
+  .hero-copy,
+  .upload-card {
+    padding: 20px;
+  }
+
+  .file-dropzone {
+    padding: 22px 18px;
+  }
+}
