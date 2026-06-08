@@ -1,7 +1,3 @@
-import os
-os.environ["NUMBA_DISABLE_JIT"] = "1"
-os.environ["NUMBA_CACHE_DIR"] = "/tmp"
-
 from __future__ import annotations
 
 import uuid
@@ -21,6 +17,10 @@ from flask import Flask, jsonify, render_template, request
 from werkzeug.utils import secure_filename
 
 from audio_utils import extract_features, is_allowed_file
+
+import os
+os.environ["NUMBA_DISABLE_JIT"] = "1"
+os.environ["NUMBA_CACHE_DIR"] = "/tmp"
 
 
 BASE_DIR = Path(__file__).resolve().parent
