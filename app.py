@@ -1,4 +1,7 @@
 from __future__ import annotations
+import os
+os.environ["NUMBA_DISABLE_JIT"] = "1"
+os.environ["NUMBA_CACHE_DIR"] = "/tmp"
 
 import uuid
 from pathlib import Path
@@ -18,9 +21,6 @@ from werkzeug.utils import secure_filename
 
 from audio_utils import extract_features, is_allowed_file
 
-import os
-os.environ["NUMBA_DISABLE_JIT"] = "1"
-os.environ["NUMBA_CACHE_DIR"] = "/tmp"
 
 
 BASE_DIR = Path(__file__).resolve().parent

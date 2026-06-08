@@ -1,14 +1,12 @@
 from __future__ import annotations
+import os
+os.environ["NUMBA_DISABLE_JIT"] = "1"
+os.environ["NUMBA_CACHE_DIR"] = "/tmp"
 
 from pathlib import Path
 
 import librosa
 import numpy as np
-
-import os
-os.environ["NUMBA_DISABLE_JIT"] = "1"
-os.environ["NUMBA_CACHE_DIR"] = "/tmp"
-
 
 UPLOAD_ALLOWED_EXTENSIONS = {"au", "mp3", "wav"}
 TRAINING_ALLOWED_EXTENSIONS = {"au", "mp3", "wav"}
