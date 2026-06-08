@@ -5,6 +5,14 @@ from pathlib import Path
 
 import joblib
 import numpy as np
+try:
+    import librosa
+    _dummy = np.zeros(22050, dtype=np.float32)
+    librosa.feature.mfcc(y=_dummy, sr=22050, n_mfcc=20)
+    print("librosa warm-up complete")
+except Exception as e:
+    print(f"librosa warm-up failed: {e}")
+
 from flask import Flask, jsonify, render_template, request
 from werkzeug.utils import secure_filename
 
