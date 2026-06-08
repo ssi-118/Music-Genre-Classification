@@ -1,3 +1,7 @@
+import os
+os.environ["NUMBA_DISABLE_JIT"] = "1"
+os.environ["NUMBA_CACHE_DIR"] = "/tmp"
+
 from __future__ import annotations
 
 from pathlib import Path

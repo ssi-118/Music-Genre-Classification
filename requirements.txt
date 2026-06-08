@@ -6,3 +6,7 @@ librosa==0.10.2.post1
 numpy==1.26.4
 scikit-learn==1.5.1
 soundfile==0.12.1
+
+# Pin numba + llvmlite to a compatible pair
+numba==0.59.1
+llvmlite==0.42.0
