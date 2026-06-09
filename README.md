@@ -1,3 +1,11 @@
+---
+title: Music Genre Classifier
+emoji: 🎵
+colorFrom: purple
+colorTo: blue
+sdk: docker
+pinned: false
+---
 # Music Genre Classification System
 
 A web-based music genre classifier powered by a **Random Forest** model trained on audio features extracted with **librosa**. Upload an MP3 or WAV file and the system predicts its genre from 10 categories.
