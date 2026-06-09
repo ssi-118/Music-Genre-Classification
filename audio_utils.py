@@ -1,7 +1,4 @@
 from __future__ import annotations
-import os
-os.environ["NUMBA_DISABLE_JIT"] = "1"
-os.environ["NUMBA_CACHE_DIR"] = "/tmp"
 
 from pathlib import Path
 
@@ -13,22 +10,20 @@ TRAINING_ALLOWED_EXTENSIONS = {"au", "mp3", "wav"}
 
 
 def is_allowed_file(filename: str) -> bool:
-    """Return True when the uploaded file has a supported extension."""
     if "." not in filename:
         return False
     return filename.rsplit(".", 1)[1].lower() in UPLOAD_ALLOWED_EXTENSIONS
 
 
 def is_trainable_file(filename: str) -> bool:
-    """Return True when the training dataset file format is supported."""
     if "." not in filename:
         return False
     return filename.rsplit(".", 1)[1].lower() in TRAINING_ALLOWED_EXTENSIONS
 
 
 def extract_features(audio_path: Path) -> np.ndarray:
-    """Extract a beginner-friendly set of audio features for genre classification."""
     y, sr = librosa.load(str(audio_path), sr=None, mono=True, duration=30)
+
     if y.size == 0:
         raise ValueError("The uploaded audio file is empty or unreadable.")
 
@@ -43,14 +38,12 @@ def extract_features(audio_path: Path) -> np.ndarray:
     harmonic, _ = librosa.effects.hpss(y)
     tonnetz = librosa.feature.tonnetz(y=harmonic, sr=sr)
 
-    feature_vector = np.concatenate(
-        [
-            np.mean(mfcc, axis=1),
-            np.mean(chroma, axis=1),
-            np.mean(mel, axis=1),
-            np.mean(spectral_contrast, axis=1),
-            np.mean(tonnetz, axis=1),
-        ]
-    )
+    feature_vector = np.concatenate([
+        np.mean(mfcc, axis=1),
+        np.mean(chroma, axis=1),
+        np.mean(mel, axis=1),
+        np.mean(spectral_contrast, axis=1),
+        np.mean(tonnetz, axis=1),
+    ])
 
     return feature_vector.reshape(1, -1)
